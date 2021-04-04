@@ -108,7 +108,7 @@ class MegaAppListener(MegaListener):
         errStr = error.toString()
         LOGGER.info(f'Mega download error in file {transfer} {filen}: {error}')
 
-        if state == 1 or state == 4:
+        if state in [1, 4]:
             # Sometimes MEGA (offical client) can't stream a node either and raises a temp failed error.
             # Don't break the transfer queue if transfer's in queued (1) or retrying (4) state [causes seg fault]
             return
