@@ -106,16 +106,12 @@ class YoutubeDLHelper(DownloadHelper):
         self.__listener.onDownloadError(error)
 
     def extractMetaData(self, link, qual, name):
-        if 'hotstar' or 'sonyliv' in link:
-            self.opts['geo_bypass_country'] = 'IN'
+        self.opts['geo_bypass_country'] = 'IN'
 
         with YoutubeDL(self.opts) as ydl:
             try:
                 result = ydl.extract_info(link, download=False)
-                if name == "":
-                    name = ydl.prepare_filename(result)
-                else:
-                    name = name
+                name = ydl.prepare_filename(result) if name == "" else name
                 # noobway hack for changing extension after converting to mp3
                 if qual == "audio":
                   name = name.replace(".mp4", ".mp3").replace(".webm", ".mp3")
