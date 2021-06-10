@@ -69,10 +69,14 @@ class MegaDownloader:
     def __onInterval(self):
         dlInfo = self.__mega_client.getDownloadInfo(self.gid)
         if (
-            dlInfo["state"] == constants.State.TYPE_STATE_COMPLETED
-            or dlInfo["state"] == constants.State.TYPE_STATE_CANCELED
-            or dlInfo["state"] == constants.State.TYPE_STATE_FAILED
-        ) and self.__periodic is not None:
+            dlInfo["state"]
+            in [
+                constants.State.TYPE_STATE_COMPLETED,
+                constants.State.TYPE_STATE_CANCELED,
+                constants.State.TYPE_STATE_FAILED,
+            ]
+            and self.__periodic is not None
+        ):
             self.__periodic.cancel()
         if dlInfo["state"] == constants.State.TYPE_STATE_COMPLETED:
             self.__onDownloadComplete()
