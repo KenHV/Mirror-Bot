@@ -19,17 +19,19 @@ class AriaDownloadHelper(DownloadHelper):
     def __onDownloadStarted(self, api, gid):
         sleep(1)
         LOGGER.info(f"onDownloadStart: {gid}")
-        download = api.get_download(gid)
+        download = aria2.get_download(gid)
         self.name = download.name
         update_all_messages()
 
     def __onDownloadComplete(self, api: API, gid):
         LOGGER.info(f"onDownloadComplete: {gid}")
         dl = getDownloadByGid(gid)
-        download = api.get_download(gid)
+        download = aria2.get_download(gid)
         if download.followed_by_ids:
             new_gid = download.followed_by_ids[0]
-            new_download = api.get_download(new_gid)
+            new_download = aria2.get_download(new_gid)
+            if dl is None:
+                dl = getDownloadByGid(new_gid)
             with download_dict_lock:
                 download_dict[dl.uid()] = AriaDownloadStatus(new_gid, dl.getListener())
                 if new_download.is_torrent:
@@ -49,6 +51,7 @@ class AriaDownloadHelper(DownloadHelper):
     @new_thread
     def __onDownloadStopped(self, api, gid):
         LOGGER.info(f"onDownloadStop: {gid}")
+        sleep(0.5)
         dl = getDownloadByGid(gid)
         if dl:
             dl.getListener().onDownloadError("Download stopped by user!")
@@ -60,7 +63,7 @@ class AriaDownloadHelper(DownloadHelper):
         )  # sleep for split second to ensure proper dl gid update from onDownloadComplete
         LOGGER.info(f"onDownloadError: {gid}")
         dl = getDownloadByGid(gid)
-        download = api.get_download(gid)
+        download = aria2.get_download(gid)
         error = download.error_message
         LOGGER.info(f"Download Error: {error}")
         if dl:

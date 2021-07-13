@@ -25,6 +25,7 @@ from bot import (
     SHORTENER,
     SHORTENER_API,
     Interval,
+    aria2,
     dispatcher,
     download_dict,
     download_dict_lock,
@@ -74,6 +75,7 @@ class MirrorListener(listeners.MirrorListeners):
 
     def clean(self):
         try:
+            aria2.purge()
             Interval[0].cancel()
             del Interval[0]
             delete_all_messages()
