@@ -11,4 +11,7 @@ aria2c \
 --follow-torrent=mem \
 --max-connection-per-server=16 \
 --max-overall-upload-limit=1K \
---seed-time=0
+--peer-agent=qBittorrent/4.3.6 \
+--peer-id-prefix=-qB4360- \
+--seed-time=0 \
+--user-agent=qBittorrent/4.3.6
