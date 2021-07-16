@@ -6,7 +6,13 @@ from bot import dispatcher, status_reply_dict, status_reply_dict_lock
 from bot.helper.ext_utils.bot_utils import get_readable_message
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.filters import CustomFilters
-from bot.helper.telegram_helper.message_utils import *
+from bot.helper.telegram_helper.message_utils import (
+    auto_delete_message,
+    bot,
+    deleteMessage,
+    sendMessage,
+    sendStatusMessage,
+)
 
 
 def mirror_status(update, context):

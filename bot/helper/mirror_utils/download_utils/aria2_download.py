@@ -4,9 +4,15 @@ from time import sleep
 from aria2p import API
 
 from bot import aria2, download_dict_lock
-from bot.helper.ext_utils.bot_utils import *
+from bot.helper.ext_utils.bot_utils import (
+    LOGGER,
+    download_dict,
+    getDownloadByGid,
+    is_magnet,
+    new_thread,
+)
 from bot.helper.mirror_utils.status_utils.aria_download_status import AriaDownloadStatus
-from bot.helper.telegram_helper.message_utils import *
+from bot.helper.telegram_helper.message_utils import update_all_messages
 
 from .download_helper import DownloadHelper
 

@@ -10,17 +10,16 @@ from telegram.ext import CommandHandler
 
 from bot import IGNORE_PENDING_REQUESTS, app, bot, botStartTime, dispatcher, updater
 from bot.helper.ext_utils import fs_utils
+from bot.helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
 from bot.helper.telegram_helper.bot_commands import BotCommands
+from bot.helper.telegram_helper.filters import CustomFilters
 from bot.helper.telegram_helper.message_utils import (
     LOGGER,
     editMessage,
     sendLogFile,
     sendMessage,
 )
-
-from .helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
-from .helper.telegram_helper.filters import CustomFilters
-from .modules import (  # noqa
+from bot.modules import (  # noqa
     authorize,
     cancel_mirror,
     clone,
@@ -90,7 +89,8 @@ def bot_help(update, context):
     help_string = f"""
 /{BotCommands.HelpCommand}: To get this message
 
-/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to google drive.\nPlzzz see this for full use of this command https://telegra.ph/Magneto-Python-Aria---Custom-Filename-Examples-01-20
+/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to google drive.
+Plzzz see this for full use of this command https://telegra.ph/Magneto-Python-Aria---Custom-Filename-Examples-01-20
 
 /{BotCommands.UnzipMirrorCommand} [download_url][magnet_link] : starts mirroring and if downloaded file is any archive , extracts it to google drive
 

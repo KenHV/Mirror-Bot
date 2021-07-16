@@ -15,7 +15,14 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from telegram import InlineKeyboardMarkup
 from telegraph import Telegraph
-from tenacity import *
+from tenacity import (
+    RetryError,
+    before_log,
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 from bot import (
     BUTTON_FIVE_NAME,
@@ -34,7 +41,7 @@ from bot import (
     parent_id,
     telegraph_token,
 )
-from bot.helper.ext_utils.bot_utils import *
+from bot.helper.ext_utils.bot_utils import get_readable_file_size, setInterval, time
 from bot.helper.ext_utils.fs_utils import get_mime_type, get_path_size
 from bot.helper.telegram_helper import button_build
 
