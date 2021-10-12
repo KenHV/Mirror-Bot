@@ -118,7 +118,7 @@ follows:
 - Clone this repo:
 
 ```
-git clone https://github.com/magneto261290/magneto-python-aria mirror-bot/
+git clone https://github.com/KenHV/Mirror-Bot mirror-bot/
 cd mirror-bot
 ```
 
