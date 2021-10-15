@@ -13,7 +13,7 @@ jobs:
           branch: "master"
           usedocker: true
           stack: "container"
-          heroku_app_name: "" 
+          heroku_app_name: "nehakutti" 
           docker_heroku_process_type: worker
-          heroku_email: ""
-          heroku_api_key: ""
+          heroku_email: "mehermankar3@gmail.com"
+          heroku_api_key: "3700f3aa-d27c-429c-817f-e19f659466ab"
