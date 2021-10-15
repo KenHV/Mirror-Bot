@@ -1,0 +1,19 @@
+name: deploy
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 
+        with:
+          region: "us"
+          branch: "master"
+          usedocker: true
+          stack: "container"
+          heroku_app_name: "meher-mankar-bot" 
+          docker_heroku_process_type: worker
+          heroku_email: mehermankar3@gmail.com""
+          heroku_api_key: "3700f3aa-d27c-429c-817f-e19f659466ab"
